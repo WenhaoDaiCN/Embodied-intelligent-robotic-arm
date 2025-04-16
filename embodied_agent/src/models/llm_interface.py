@@ -260,6 +260,67 @@ def query_text_llm(prompt: str, model_name: str = None) -> str:
                 return query_qianfan_llm(prompt)
 
 
+# ====================== Message History Interface ======================
+
+def query_llm_with_history(messages: List[Dict[str, str]], model_name: str = None) -> str:
+    """
+    Query LLM with a message history using a specified model or default with fallback mechanism.
+    
+    Args:
+        messages: List of message dictionaries with role and content
+        model_name: Optional model name to use (e.g., 'openai', 'claude', etc.)
+                  If None, uses DEFAULT_TEXT_MODEL from config
+    
+    Returns:
+        Model response text
+    """
+    # If no model specified, use the default
+    if model_name is None:
+        model_name = DEFAULT_TEXT_MODEL
+    
+    model_name = model_name.lower()
+    
+    # Try the selected model first
+    try:
+        if model_name == "openai":
+            return query_openai_gpt(messages)
+        elif model_name == "claude":
+            return query_claude(messages)
+        elif model_name == "gemini":
+            return query_gemini(messages)
+        elif model_name == "yi":
+            return query_yi_llm(messages)
+        elif model_name == "qianfan":
+            # Qianfan interface is different, extract the last user message if possible
+            last_user_message = ""
+            for msg in reversed(messages):
+                if msg["role"] == "user":
+                    last_user_message = msg["content"]
+                    break
+            return query_qianfan_llm(last_user_message)
+        else:
+            logger.warning(f"Unknown model name: {model_name}, falling back to OpenAI")
+            return query_openai_gpt(messages)
+    
+    except Exception as e:
+        logger.error(f"Error with primary model {model_name}: {e}. Trying fallback...")
+        
+        # Fallback chain: OpenAI -> Yi -> Qianfan
+        try:
+            return query_openai_gpt(messages)
+        except Exception:
+            try:
+                return query_yi_llm(messages)
+            except Exception:
+                # Extract the last user message for Qianfan if possible
+                last_user_message = ""
+                for msg in reversed(messages):
+                    if msg["role"] == "user":
+                        last_user_message = msg["content"]
+                        break
+                return query_qianfan_llm(last_user_message)
+
+
 # ====================== Multimodal Vision Models ======================
 
 def query_openai_vision(instruction: str, img_path: str, model: str = "gpt-4o") -> Union[Dict[str, Any], str]:
@@ -467,3 +528,4 @@ def query_vision_api(instruction: str, img_path: str, vision_option: int = 0, mo
                 return query_qwen_vision(instruction, img_path, vision_option)
             except Exception:
                 return query_gemini_vision(instruction, img_path)
+"""

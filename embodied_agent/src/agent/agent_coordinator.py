@@ -11,10 +11,11 @@ import json
 from typing import Dict, List, Any, Union
 
 # Import from our own modules
-from models.llm_interface import query_yi_llm
+from models.llm_interface import query_llm_with_history
 from .prompts import SYSTEM_PROMPT
+from config import DEFAULT_TEXT_MODEL
 
-def coordinate_actions(message_history: List[Dict[str, str]]) -> Dict[str, Any]:
+def coordinate_actions(message_history: List[Dict[str, str]], model_name: str = None) -> Dict[str, Any]:
     """
     Coordinates the agent's actions based on user instructions and system state.
     
@@ -24,14 +25,18 @@ def coordinate_actions(message_history: List[Dict[str, str]]) -> Dict[str, Any]:
     
     Args:
         message_history: List of message exchanges between user and system
+        model_name: Optional model name to use. If None, uses DEFAULT_TEXT_MODEL from config
         
     Returns:
         Dictionary containing the planned functions to execute and response text
     """
     print('Agent planning actions...')
     
-    # Use the Yi large language model to generate an action plan
-    action_plan_raw = query_yi_llm(message_history)
+    # Use the configured large language model to generate an action plan
+    if model_name is None:
+        model_name = DEFAULT_TEXT_MODEL
+    
+    action_plan_raw = query_llm_with_history(message_history, model_name)
     
     # Parse the raw output into a structured action plan
     try:
