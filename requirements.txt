@@ -1,0 +1,21 @@
+# Python >= 3.12 required
+numpy==1.26.4
+opencv-python
+appbuilder-sdk
+Pillow
+qianfan
+pyaudio      # For Linux, run sudo apt-get install portaudio19-dev
+pybind11==2.11.0
+pybind11-global==2.11.0  # Ensure that the version of the pybind11 main package is consistent
+plyfile
+open3d
+openai>=1.0.0  # 使用最新的OpenAI客户端库
+redis
+sounddevice
+anthropic>=0.15.0  # 用于Claude模型
+google-generativeai>=0.3.0  # 用于Gemini模型
+python-dotenv  # 用于从.env文件加载环境变量
+pymycobot  # 机械臂控制库
+RPi.GPIO>=0.7.0  # 树莓派GPIO控制，仅适用于Linux环境
+colorlog  # 改进日志显示
+requests  # HTTP请求库
