@@ -1,0 +1,50 @@
+InstructionID,InstructionType,InstructionContent,Model,ComprehensionAccuracy,ExecutionSuccessRate,ResponseTime(ms),ClarificationRequestCount
+1,Simple,Return the robotic arm to zero position,GPT-4o,1.0,1.0,632,0
+2,Simple,Grab the red cube,GPT-4o,1.0,0.98,652,0
+3,Simple,Turn on vacuum pump,GPT-4o,1.0,1.0,587,0
+4,Simple,Turn off LED lights,GPT-4o,1.0,1.0,602,0
+5,Simple,Take a photo,GPT-4o,0.98,0.98,701,0
+6,Moderate,Place the red cube on the blue box,GPT-4o,0.95,0.93,756,0
+7,Moderate,First return to zero then perform dance motion,GPT-4o,0.95,0.94,798,0
+8,Moderate,Pick up the toy on the left side of the table and place it on the right,GPT-4o,0.88,0.86,825,1
+9,Moderate,Turn on vacuum pump and grab the green block,GPT-4o,0.93,0.91,776,0
+10,Moderate,Rotate the second joint by 30 degrees counterclockwise,GPT-4o,0.91,0.90,742,0
+11,Complex,First return to zero, then grab the red cube, and finally place it in the green area,GPT-4o,0.85,0.82,895,0
+12,Complex,Find the smallest object on the table and move it into the box,GPT-4o,0.79,0.76,925,1
+13,Complex,Arrange three blocks in color order: red, green, blue,GPT-4o,0.81,0.78,918,1
+14,Complex,Turn on LED lights, perform dance, then move to observation position,GPT-4o,0.84,0.84,876,0
+15,Complex,Touch all objects on the table from left to right,GPT-4o,0.76,0.72,942,1
+16,Ambiguous,Put it over there,GPT-4o,0.72,0.68,795,1
+17,Ambiguous,Help me organize this,GPT-4o,0.65,0.60,812,1
+18,Ambiguous,Move that one,GPT-4o,0.68,0.62,788,1
+19,Ambiguous,Do the previous action again,GPT-4o,0.78,0.76,752,1
+20,Ambiguous,Arrange it like yesterday,GPT-4o,0.62,0.58,876,1
+21,Context-Dependent,Do it again,GPT-4o,0.82,0.80,672,1
+22,Context-Dependent,Put the other one in too,GPT-4o,0.75,0.72,732,1
+23,Context-Dependent,Handle the blue one the same way,GPT-4o,0.78,0.75,758,1
+24,Context-Dependent,Continue with the rest,GPT-4o,0.70,0.65,782,1
+25,Context-Dependent,This time with the green one,GPT-4o,0.85,0.82,706,0
+
+26,Simple,Rotate the base 90 degrees,Claude-3,0.98,0.98,622,0
+27,Simple,Grab the blue sphere,Claude-3,0.97,0.96,645,0
+28,Moderate,First turn on red light then perform head nodding motion,Claude-3,0.92,0.90,785,0
+29,Complex,Grab three different colored balls in sequence and arrange them in a triangle,Claude-3,0.79,0.75,912,1
+30,Ambiguous,Organize the desktop,Claude-3,0.70,0.65,836,1
+
+31,Simple,Display camera feed,Gemini-1.5,0.99,0.99,615,0
+32,Moderate,Remove the yellow block from the box and place it on the table,Gemini-1.5,0.90,0.88,778,0
+33,Complex,First return to zero, wait for 3 seconds, then touch all red objects on the table in sequence,Gemini-1.5,0.82,0.79,905,0
+34,Ambiguous,Put that away properly,Gemini-1.5,0.65,0.60,825,1
+35,Context-Dependent,Continue the previous operation,Gemini-1.5,0.74,0.72,765,1
+
+36,Simple,Enter teaching mode,Yi-Large,0.97,0.97,638,0
+37,Moderate,Grab the white card and place it in the recognition area,Yi-Large,0.89,0.86,792,0
+38,Complex,Identify and arrange all cubes on the table in order of size,Yi-Large,0.75,0.70,935,1
+39,Ambiguous,Help me fix that over there,Yi-Large,0.60,0.55,842,1
+40,Context-Dependent,Use the same method as before,Yi-Large,0.72,0.68,775,1
+
+41,Simple,Move to coordinates 150,-100,ERNIE-Bot,0.96,0.96,625,0
+42,Moderate,First take a photo then identify objects in the image,ERNIE-Bot,0.88,0.86,782,0
+43,Complex,Take an item from box A, check it, and place it in box B,ERNIE-Bot,0.78,0.75,895,1
+44,Ambiguous,Clean up,ERNIE-Bot,0.62,0.57,835,1
+45,Context-Dependent,Place at the same height,ERNIE-Bot,0.70,0.66,762,1
